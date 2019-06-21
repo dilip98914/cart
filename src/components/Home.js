@@ -1,123 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button } from 'reactstrap';
 
-class Home extends Component {
-    state={
-        isLoading:true,
-        token:'',
-        signUpError:'',
-        signInError:'',
-        signInEmail:'',
-        signInPassword:'',
-        signUpEmail:'',
-        signUpPassword:'',
-    };
-
-    componentDidMount() {
-        this.setState({
-          isLoading: false
-        });
-     }
-
-    onTextboxChangeEmail=(e)=>{
-        this.setState({
-            signUpEmail:e.target.value
-        });        
-    }
-
-    onTextboxChangePassword=(e)=>{
-        this.setState({
-            signUpPassword:e.target.value
-        });        
-    }
+const Home = (props) => {
 
 
-    onSignUp=()=>{
-        const {signUpEmail,signUpPassword}=this.state;
-        
-        this.setState({
-            isLoading: true,
-          });
+  return (
+      <div className='row'>
+        <Card className='card' >
+        <CardImg className="img"  top width="100%" src="https://images-na.ssl-images-amazon.com/images/I/711PjhCvvZL._SL1260_.jpg" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Redmi note7</CardTitle>
+          <CardSubtitle>best under 12,000</CardSubtitle>
+          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+          <Button>Button</Button>
+        </CardBody>
+      </Card>
+      <Card className='card' >
+        <CardImg className="img"  top width="100%" src="https://images-na.ssl-images-amazon.com/images/I/711PjhCvvZL._SL1260_.jpg" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Redmi note7</CardTitle>
+          <CardSubtitle>best under 12,000</CardSubtitle>
+          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+          <Button>Button</Button>
+        </CardBody>
+      </Card>      
+      <Card className='card' >
+        <CardImg className="img"  top width="100%" src="https://images-na.ssl-images-amazon.com/images/I/711PjhCvvZL._SL1260_.jpg" alt="Card image cap" />
+        <CardBody>
+          <CardTitle>Redmi note7</CardTitle>
+          <CardSubtitle>best under 12,000</CardSubtitle>
+          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+          <Button>Button</Button>
+        </CardBody>
+        </Card>          
 
-        // post request to backend
-        fetch('http://localhost:8080/api/account/signup',{
-            method:'POST',
-            headers:{
-                'Content-Type':'application/json',
-                'Accept': 'application/json'
+      </div>
 
-            },
-            body:JSON.stringify({
-                email:signUpEmail,
-                password:signUpPassword,
-            }),
-        }).then((res)=>res.json())
-            .then((json)=>{
-                console.log('json',json);
-                if(json.success){
-                    this.setState({
-                        signUpError:json.message,
-                        isLoading:false,
-                        signUpEmail:'',
-                        signUpPassword:'',
-                    });
-                }else{
-                    this.setState({
-                        signUpError:json.message,
-                        isLoading:false,
-                    });
-                }
-            });
-    }
-    
-    
-
-    render() {
-        const {
-            isLoading,
-            token,
-            signInError,
-            signInEmail,
-            signInPassword,
-            signUpEmail,
-            signUpPassword,
-            signUpError,
-          } = this.state;
-
-
-          if(isLoading){
-              return (<div><p>Laoding....</p></div>);
-          }
-
-          if(!token){
-              return(
-                  <div>
-                      <p>Sign Up</p>
-                       <input 
-                        type='email'
-                        placeholder='Email'
-                        name="signUpEmail"
-                        value={signUpEmail}
-                        onChange={this.onTextboxChangeEmail}
-                        /> 
-                        <br/>
-                        <input 
-                        type='password'
-                        placeholder='Password'
-                        name="signUpPassword"
-                        value={signUpPassword}
-                        onChange={this.onTextboxChangePassword}
-                        /> 
-                        <br/>
-
-                        <button onClick={this.onSignUp}>Sign Up</button>
-
-
-                  </div>
-              )
-          }
-
-
-    }
-}
+  );
+};
 
 export default Home;
