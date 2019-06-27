@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import Signup from './components/Signup';
 import Navbar from './components/Navbar';
-import SignIn from './components/SignIn';
+import Login from './components/Login';
+import Register from './components/Register';
 import Home from './components/Home';
 
 
@@ -14,18 +14,16 @@ class App extends React.Component{
    render(){
       return (
         <Router>
-          <div>
-            <Navbar/>
-            {/* <Link to="/signup">Signup</Link>
-            <Link to="/signin">Signin</Link> */}
+            <div className='app'>
+              <Navbar/>
 
-            <Switch>
-              <Route path='/signup' component={Signup}/>
-              <Route path='/signin' component={SignIn}/>
-              <Route path='/' component={Home}/>
-            </Switch>
-          </div>
+              <Switch>
+                <Route path='/register' component={Register}/>
+                <Route path='/login' component={Login}/>
+                <Route path='/' component={Home}/>
+              </Switch>
 
+            </div>
           </Router> 
 
       );

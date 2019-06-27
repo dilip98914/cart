@@ -1,8 +1,8 @@
 const express = require('express');
 const config=require('./config/config.js');
 const mongoose = require('mongoose');
-const path = require('path');
 const cors=require('cors');
+const cookieParser = require('cookie-parser');
 const port  = process.env.PORT || 8080;
 
 //mongodb  connect
@@ -23,6 +23,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 require('./routes/api/user.js')(app);
 
 //must last ??
